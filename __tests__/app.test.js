@@ -28,31 +28,64 @@ describe('app routes', () => {
       return client.end(done);
     });
 
-    test('returns animals', async() => {
+    test('returns cafedrinks', async() => {
 
       const expectation = [
         {
-          'id': 1,
-          'name': 'bessie',
-          'cool_factor': 3,
-          'owner_id': 1
+          name: 'Caffe_Latte',
+          price: 3.35,
+          calories: 100,
+          hotcold: true,
+      
         },
         {
-          'id': 2,
-          'name': 'jumpy',
-          'cool_factor': 4,
-          'owner_id': 1
+          name: 'Caffe_Mocha',
+          price: 3.95,
+          calories: 200,
+          hotcold: true,
         },
         {
-          'id': 3,
-          'name': 'spot',
-          'cool_factor': 10,
-          'owner_id': 1
+          name: 'Caffe_Misto',
+          price: 2.85,
+          calories: 50,
+          hotcold: false,
+        },
+        {
+          name: 'Cappucino',
+          price: 3.35,
+          calories: 70,
+          hotcold: false
+        },
+        {
+          name: 'Chai_Tea_Latte',
+          price: 3.85,
+          calories: 120,
+          hotcold: false
         }
       ];
 
       const data = await fakeRequest(app)
-        .get('/animals')
+        .get('/cafedrinks')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expectation);
+    });
+    test('returns from id', async() => {
+      const expectation =
+      {
+        
+        id: 1,
+        name: 'Caffe_Latte',
+        price: 3.35,
+        calories: 100,
+        hotcold: true,
+        owner_id: 1
+      
+        
+      };
+      const data = await fakeRequest(app)
+        .get('/cafedrinks/1')
         .expect('Content-Type', /json/)
         .expect(200);
 
