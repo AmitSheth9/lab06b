@@ -1,4 +1,4 @@
-module.exports = [
+const cafedrinks = [
   {
     name: 'Caffe_Latte',
     price: 3.35,
@@ -31,3 +31,4 @@ module.exports = [
     hotcold: false
   }
 ];
+module.exports = { cafedrinks };
