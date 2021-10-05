@@ -32,45 +32,39 @@ describe('app routes', () => {
 
       const expectation = [
         {
-          id: 1,
-          name: 'Caffe_Latte',
-          price: '3.35',
-          calories: 100,
-          hotcold: true,
-          owner_id:1
-      
+          'id': 1,
+          'name': 'Caffe_Latte',
+          'price': '3.35',
+          'calories': 100,
+          'category': 'Hot'
         },
         {
-          id: 2,
-          name: 'Caffe_Mocha',
-          price: '3.95',
-          calories: 200,
-          hotcold: true,
-          owner_id:1
+          'id': 2,
+          'name': 'Caffe_Mocha',
+          'price': '3.95',
+          'calories': 200,
+          'category': 'Hot'
         },
         {
-          id: 3,
-          name: 'Caffe_Misto',
-          price: '2.85',
-          calories: 50,
-          hotcold: false,
-          owner_id:1
+          'id': 3,
+          'name': 'Caffe_Misto',
+          'price': '2.85',
+          'calories': 50,
+          'category': 'Cold'
         },
         {
-          id:4,
-          name: 'Cappucino',
-          price: '3.35',
-          calories: 70,
-          hotcold: false,
-          owner_id:1
+          'id': 4,
+          'name': 'Cappucino',
+          'price': '3.35',
+          'calories': 70,
+          'category': 'Cold'
         },
         {
-          id:5,
-          name: 'Chai_Tea_Latte',
-          price: '3.85',
-          calories: 120,
-          hotcold: false,
-          owner_id:1
+          'id': 5,
+          'name': 'Chai_Tea_Latte',
+          'price': '3.85',
+          'calories': 120,
+          'category': 'Cold'
         }
       ];
 
@@ -84,15 +78,11 @@ describe('app routes', () => {
     test('returns from id', async() => {
       const expectation =
       {
-        
-        id: 1,
-        name: 'Caffe_Latte',
-        price: '3.35',
-        calories: 100,
-        hotcold: true,
-        owner_id: 1
-      
-        
+        'id': 1,
+        'name': 'Caffe_Latte',
+        'price': '3.35',
+        'calories': 100,
+        'category': 'Hot'
       };
       const data = await fakeRequest(app)
         .get('/cafedrinks/1')
@@ -108,7 +98,7 @@ describe('app routes', () => {
         name: 'Pumpkin Latte',
         price: '4',
         calories: 250,
-        hotcold: false,
+        category_id: 1,
         owner_id: 1
       };
       const data = await fakeRequest(app)
@@ -117,7 +107,7 @@ describe('app routes', () => {
           name: 'Pumpkin Latte',
           price: 4,
           calories: 250,
-          hotcold: false
+          category_id: 1
         })
         .expect('Content-Type', /json/)
         .expect(200);
@@ -132,16 +122,16 @@ describe('app routes', () => {
         name: 'frappucino',
         price: '4',
         calories: 300,
-        hotcold: true,
+        category: 2,
         owner_id: 1
       };
       const data = await fakeRequest(app)
-        .put('/cafedrinks/3')
+        .put('/cafedrinks/7')
         .send({
           name: 'frappucino',
           price: 4,
           calories: 300,
-          hotcold: true
+          category: 2
         })
         .expect('Content-Type', /json/)
         .expect(200);
@@ -156,11 +146,11 @@ describe('app routes', () => {
         name: 'frappucino',
         price: '4',
         calories: 300,
-        hotcold: true,
+        category: 2,
         owner_id: 1
       };
       const data = await fakeRequest(app)
-        .delete('/cafedrinks/3')
+        .delete('/cafedrinks/7')
         .expect('Content-Type', /json/)
         .expect(200);
 

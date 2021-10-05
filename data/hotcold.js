@@ -1,11 +1,11 @@
 const hotcolddata = [
   {
     
-    hotcold: 'Hot'
+    category: 'Hot'
   },
   {
    
-    hotcold: 'Cold'
+    category: 'Cold'
   },
 ];
 module.exports = { hotcolddata };

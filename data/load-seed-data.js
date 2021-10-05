@@ -29,20 +29,20 @@ async function run() {
 
     await Promise.all(
       hotcolddata.map(category => {
-        return client.query(`INSERT INTO hotcold (hotcold)
+        return client.query(`INSERT INTO categories (category)
         Values ($1);
         `,
-        [category.hotcold]);
+        [category.category]);
       })
     );
 
     await Promise.all(
       cafedrinks.map(drink => {
         return client.query(`
-                    INSERT INTO cafedrinks (name, price, calories, hotcold_id, owner_id)
+                    INSERT INTO cafedrinks (name, price, calories, category_id, owner_id)
                     VALUES ($1, $2, $3, $4, $5);
                 `,
-        [drink.name, drink.price, drink.calories, drink.hotcold_id, user.id]);
+        [drink.name, drink.price, drink.calories, drink.category_id, user.id]);
       })
     );
     

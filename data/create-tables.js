@@ -17,16 +17,16 @@ async function run() {
                     email VARCHAR(256) NOT NULL,
                     hash VARCHAR(512) NOT NULL
                 ); 
-                CREATE TABLE hotcold (
+                CREATE TABLE categories (
                   id SERIAL PRIMARY KEY,
-                  hotcold VARCHAR(512) NOT NULL
+                  category VARCHAR(512) NOT NULL
                 );          
                 CREATE TABLE cafedrinks (
                     id SERIAL PRIMARY KEY NOT NULL,
-                    name VARCHAR(512),
+                    name VARCHAR(512) NOT NULL,
                     price DECIMAL NOT NULL,
                     calories INTEGER NOT NULL,
-                    hotcold_id INTEGER NOT NULL REFERENCES hotcold(id),
+                    category_id INTEGER NOT NULL REFERENCES categories(id),
                     owner_id INTEGER NOT NULL REFERENCES users(id)
             );
         `);
