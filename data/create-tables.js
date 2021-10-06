@@ -27,6 +27,7 @@ async function run() {
                     price DECIMAL NOT NULL,
                     calories INTEGER NOT NULL,
                     category_id INTEGER NOT NULL REFERENCES categories(id),
+                    image VARCHAR(512) NOT NULL,
                     owner_id INTEGER NOT NULL REFERENCES users(id)
             );
         `);
