@@ -30,7 +30,7 @@ async function run() {
     await Promise.all(
       hotcolddata.map(category => {
         return client.query(`INSERT INTO categories (category)
-        Values ($1);
+        VALUES ($1);
         `,
         [category.category]);
       })
