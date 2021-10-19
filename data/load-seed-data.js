@@ -2,6 +2,7 @@
 const client = require('../lib/client');
 // import our seed data:
 const { cafedrinks } = require('./cafedrinks.js');
+const { hotcolddata } = require('./hotcold.js');
 const usersData = require('./users.js');
 const { getEmoji } = require('../lib/emoji.js');
 
@@ -27,12 +28,21 @@ async function run() {
     const user = users[0].rows[0];
 
     await Promise.all(
+      hotcolddata.map(category => {
+        return client.query(`INSERT INTO categories (category)
+        VALUES ($1);
+        `,
+        [category.category]);
+      })
+    );
+
+    await Promise.all(
       cafedrinks.map(drink => {
         return client.query(`
-                    INSERT INTO cafedrinks (name, price, calories, hotcold, owner_id)
-                    VALUES ($1, $2, $3, $4, $5);
+                    INSERT INTO cafedrinks (name, price, calories, category_id, image, owner_id)
+                    VALUES ($1, $2, $3, $4, $5, $6);
                 `,
-        [drink.name, drink.price, drink.calories, drink.hotcold, user.id]);
+        [drink.name, drink.price, drink.calories, drink.category_id, drink.image, user.id]);
       })
     );
     
